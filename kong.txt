@@ -1,0 +1,19 @@
+
+kong:
+postgres   postgres    kong_user kong_pass kong_db
+
+kong start
+hong stop
+dash-board  start
+curl -i -X POST   --url  http://localhost:8001/apis/   --data 'name=weather-api'   --data 'hosts=www.sojson.com'   --data 'upstream_url=https://www.sojson.com/open/api/weather/json.shtml'
+
+
+
+/usr/kafka/
+kafka:
+创建主题
+./bin/kafka-topics.sh --create --zookeeper localhost:2181,localhost:2182,localhost:2183 --replication-factor 3 --partitions 3 --topic test Created topic "test"
+创建消费者
+./bin/kafka-console-consumer.sh --bootstrap-server localhost:9091,localhost:9092,localhost:9093 --from-beginning --topic test
+创建生产者
+./bin/kafka-console-producer.sh --broker-list localhost:9091,localhost:9092,localhost:9093 --topic test
